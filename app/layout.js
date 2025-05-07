@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider
       appearance={{
-        baseTheme: neobrutalism, //dark
+        baseTheme:  neobrutalism,//dark ,
       }}
     >
       <html lang="en" suppressHydrationWarning>
