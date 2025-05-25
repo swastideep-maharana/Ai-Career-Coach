@@ -1,8 +1,9 @@
 "use client";
-import Link from "next/link";
-import { useEffect, useRef } from "react";
-import { Button } from "./ui/button";
+
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const HeroSection = () => {
   const imageRef = useRef(null);
@@ -45,11 +46,16 @@ const HeroSection = () => {
               Get Started
             </Button>
           </Link>
+          <Link href="https://www.youtube.com/roadsidecoder">
+            <Button size="lg" variant="outline" className="px-8">
+              Watch Demo
+            </Button>
+          </Link>
         </div>
         <div className="hero-image-wrapper mt-5 md:mt-0">
           <div ref={imageRef} className="hero-image">
             <Image
-              src="/banner2.jpeg"
+              src="/banner.jpeg"
               width={1280}
               height={720}
               alt="Dashboard Preview"
@@ -62,4 +68,5 @@ const HeroSection = () => {
     </section>
   );
 };
+
 export default HeroSection;
