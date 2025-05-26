@@ -1,11 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,13 +16,6 @@ import { Textarea } from "@/components/ui/textarea";
 import useFetch from "@/hooks/use-fetch";
 import { generateCoverLetter } from "@/actions/cover-letter";
 import { coverLetterSchema } from "@/app/lib/schema";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 
 export default function CoverLetterGenerator() {
   const router = useRouter();
@@ -39,7 +35,6 @@ export default function CoverLetterGenerator() {
     data: generatedLetter,
   } = useFetch(generateCoverLetter);
 
-  // Update content when letter is generated
   useEffect(() => {
     if (generatedLetter) {
       toast.success("Cover letter generated successfully!");
@@ -62,7 +57,7 @@ export default function CoverLetterGenerator() {
         <CardTitle>AI Cover Letter Generator</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="jobTitle">Job Title</Label>
             <Input
@@ -98,7 +93,7 @@ export default function CoverLetterGenerator() {
               )}
             </Button>
           </div>
-        </div>
+        </form>
       </CardContent>
     </Card>
   );
